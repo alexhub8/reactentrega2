@@ -1,14 +1,19 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
-import "bootstrap/dist/css/bootstrap.min.css";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <ItemListContainer greeting="¡Bienvenido a CursoReactJS, tu tienda online favorita!" />
-    </>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        <Route path="*" element={<h2 className="not-found">404 - Página no encontrada</h2>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
